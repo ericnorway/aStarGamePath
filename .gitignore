@@ -5,3 +5,5 @@
 *.resources
 *.cache
 *.Cache
+*.resx
+*.csproj
