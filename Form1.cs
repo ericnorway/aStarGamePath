@@ -20,7 +20,7 @@ namespace AStarGameMap
 		private Point goal;
 		private Point tileSize;
 		private bool solved = false;
-		List<Point> path;
+		private List<Point> path;
 
 		public AStarGameForm() {
 			InitializeComponent();
