@@ -239,6 +239,7 @@ namespace AStarGameMap
 
 			Double tempG = current.g + edgeWeight;
 			Double tempF = tempG + grid[adjPoint.X, adjPoint.Y].GetHeuristic((Point)goal);
+
 			if (tempF < grid[adjPoint.X, adjPoint.Y].f) {
 				grid[adjPoint.X, adjPoint.Y].f = tempF;
 				grid[adjPoint.X, adjPoint.Y].g = tempG;

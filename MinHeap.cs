@@ -11,13 +11,21 @@ namespace AStarGameMap
 		private Node[] arr;
 		private int size = 16;
 		private int count;
+		private HashTable hashTable;
 
 		public MinHeap() {
 			arr = new Node[size];
 			count = 0;
+			hashTable = new HashTable();
 		}
 
 		public void Insert(Node value) {
+			if (hashTable.Find(value.point)) {
+				return;
+			}
+
+			hashTable.Insert(value.point);
+
 			if (count >= size) {
 				size *= 2;
 				Node[] temp = new Node[size];
@@ -47,6 +55,8 @@ namespace AStarGameMap
 			count--;
 
 			Heapify(0);
+
+			hashTable.Remove(temp.point);
 
 			return temp;
 		}
