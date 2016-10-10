@@ -20,7 +20,7 @@ namespace AStarGameMap
 		private Point goal;
 		private Point tileSize;
 		private bool solved = false;
-		private List<Point> path;
+		List<Point> path;
 
 		public AStarGameForm() {
 			InitializeComponent();
@@ -164,6 +164,10 @@ namespace AStarGameMap
 		}
 
 		private void ClearPath() {
+			if (path == null) {
+				return;
+			}
+
 			foreach(Point p in path) {
 				grid.UpdateGridCell(p, GridObject.Empty);
 				DrawOnPanel(p, GridObject.Empty);

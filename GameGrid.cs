@@ -17,6 +17,7 @@ namespace AStarGameMap
 		private const int WIDTH_CELLS = 64;
 		private const int HEIGHT_CELLS = 48;
 		private List<Node> solution;
+		private const double SQRT2 = 1.41421356;
 
 		public GameGrid(int x, int y) {
 			xScale = x / WIDTH_CELLS;
@@ -120,7 +121,7 @@ namespace AStarGameMap
 				Node temp = minQ.Dequeue();
 
 				// If goal reached
-				if (temp.point.X == goal.X && temp.point.Y == goal.Y) {
+				if (temp.point.X == goal.X && temp.point.Y == goal.Y && temp.f <= minQ.Peek().f) {
 					goalFound = true;
 					break;
 				}
@@ -157,7 +158,7 @@ namespace AStarGameMap
 				case Direction.NE:
 					adjPoint.X = current.point.X + 1;
 					adjPoint.Y = current.point.Y - 1;
-					edgeWeight = 1.42;
+					edgeWeight = SQRT2;
 					// Don't allow diagonal moves over a barrier.
 					if (current.point.X + 1 >= WIDTH_CELLS
 						|| grid[current.point.X + 1, current.point.Y].gridObj == GridObject.Barrier) {
@@ -175,7 +176,7 @@ namespace AStarGameMap
 				case Direction.SE:
 					adjPoint.X = current.point.X + 1;
 					adjPoint.Y = current.point.Y + 1;
-					edgeWeight = 1.42;
+					edgeWeight = SQRT2;
 					// Don't allow diagonal moves over a barrier.
 					if (current.point.X + 1 >= WIDTH_CELLS
 						|| grid[current.point.X + 1, current.point.Y].gridObj == GridObject.Barrier) {
@@ -194,7 +195,7 @@ namespace AStarGameMap
 				case Direction.SW:
 					adjPoint.X = current.point.X - 1;
 					adjPoint.Y = current.point.Y + 1;
-					edgeWeight = 1.42;
+					edgeWeight = SQRT2;
 					// Don't allow diagonal moves over a barrier.
 					if (current.point.X - 1 < 0
 						|| grid[current.point.X - 1, current.point.Y].gridObj == GridObject.Barrier) {
@@ -222,7 +223,7 @@ namespace AStarGameMap
 					  || grid[current.point.X, current.point.Y - 1].gridObj == GridObject.Barrier) {
 						return;
 					}
-					edgeWeight = 1.42;
+					edgeWeight = SQRT2;
 					break;
 			}
 

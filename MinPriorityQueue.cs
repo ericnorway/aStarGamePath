@@ -18,6 +18,10 @@ namespace AStarGameMap
 			minHeap.Insert(n);
 		}
 
+		public Node Peek() {
+			return minHeap.GetMin();
+		}
+
 		public Node Dequeue() {
 			return minHeap.RemoveMin();
 		}
