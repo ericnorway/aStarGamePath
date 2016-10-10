@@ -43,10 +43,16 @@ namespace AStarGameMap
 			while (pos > 0) {
 				if (arr[pos].f < arr[parentPos].f) {
 					Swap(pos, parentPos);
+					pos = parentPos;
+					parentPos = (pos - 1) / 2;
 				} else {
 					break;
 				}
 			}
+		}
+
+		public Node GetMin() {
+			return arr[0];
 		}
 
 		public Node RemoveMin() {
